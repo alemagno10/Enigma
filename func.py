@@ -25,7 +25,7 @@ def enigma(msg, P, E):
     for i in range(size[1]):
         if i > 1:
             x = E
-            for _ in range(i):
+            for _ in range(i-1):
                 x = E @ x
             x = x @ P @ hotMsg
         elif i == 1:
@@ -39,10 +39,25 @@ def enigma(msg, P, E):
             final = x.T[i]
     return para_string(final.T)
 
+def de_enigma(msg, P, E):
+    msg = para_one_hot(msg).T
+    size = msg.shape
+    final = np.array([0 for i in range(27)])
+    for i in range(size[0]):
+        x = msg[i] 
+        if i == 0: 
+            final = np.linalg.inv(P) @ x
+        else:
+            for _ in range(i):
+                x = np.linalg.inv(E) @ x 
+            final = np.vstack((final, np.linalg.inv(P) @ x))
+    return para_string(final.T)
 
 alfabeto_cifrado = para_one_hot("bcdefghijkl mnopqrstuvwxyza")
 cifrador_auxiliar = para_one_hot("ijkl mnopqrstuvwxyzabcdefgh")
 mensagem_entrada = "o bolo de chocolate fica pronto quatro horas da tarde"
+mensagem_entrada = "alemagno"
 x = enigma(mensagem_entrada, alfabeto_cifrado, cifrador_auxiliar)
-print(x)
+y = de_enigma(x, alfabeto_cifrado, cifrador_auxiliar)
+print(x,y)
 
