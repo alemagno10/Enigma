@@ -40,3 +40,8 @@ def de_enigma(msg, P, E):
     return para_string(final.T)
 
 
+# alfabeto_cifrado = para_one_hot("bcdefghijkl mnopqrstuvwxyza")
+# cifrador_auxiliar = para_one_hot("ijkl mnopqrstuvwxyzabcdefgh")
+# mensagem_entrada = "o bolo de chocolate fica pronto quatro horas da tarde"
+# x = enigma(mensagem_entrada, alfabeto_cifrado, cifrador_auxiliar)
+# print(x)
