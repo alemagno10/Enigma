@@ -4,13 +4,16 @@ from model.modelos import *
 import os
 import json
 
-class Para_String(Resource): ##opiniao ale se ja faz auto
+alfabeto_cifrado = "bcdefghijkl mnopqrstuvwxyza"
+cifrador_auxiliar = "ijkl mnopqrstuvwxyzabcdefgh"
+
+class Para_String(Resource):
     def post(self):
         corpo = request.get_json( force=True )
         string_crypt = para_string(np.array(corpo['chave']))
         return {'Chave em String': string_crypt}, 200
     
-class Para_OneHot(Resource): ##esse funfou
+class Para_OneHot(Resource):
     def post(self):
         corpo = request.get_json( force=True )
         one_hot = para_one_hot(corpo['chave'])
@@ -20,30 +23,27 @@ class Cifra(Resource):
     #cifra
     def post(self):
         corpo = request.get_json( force=True )
-        string_crypt = cifra(corpo['mensagem'],corpo['chave'])
+        string_crypt = cifra(corpo['mensagem'],para_one_hot(alfabeto_cifrado))
         return {'Mensagem Criptografada': string_crypt}, 200
     
 class De_Cifra(Resource):
     #de cifra
     def post(self):
-        #verificação msg e M falta aqui
         corpo = request.get_json( force=True )
-        string_crypt = de_cifra(corpo['mensagem'],corpo['chave'])
+        string_crypt = de_cifra(corpo['mensagem'],para_one_hot(alfabeto_cifrado))
         return {'Mensagem Descriptografada': string_crypt}, 200
     
 class Enigma(Resource):
     #enigma
     def post(self):
-        #verificação msg, P e E falta aqui
         corpo = request.get_json( force=True )
-        string_crypt = enigma(corpo['mensagem'],corpo['chave'],corpo['chave auxiliar'])
+        string_crypt = enigma(corpo['mensagem'],para_one_hot(alfabeto_cifrado),para_one_hot(cifrador_auxiliar))
         return {'Mensagem Criptografada': string_crypt}, 200
     
 class De_Enigma(Resource):
     #de enigma
     def post(self):
-        #verificação msg, P e E falta aqui
         corpo = request.get_json( force=True )
-        string_crypt = de_enigma(corpo['mensagem'],corpo['chave'],corpo['chave auxiliar'])
+        string_crypt = de_enigma(corpo['mensagem'],para_one_hot(alfabeto_cifrado),para_one_hot(cifrador_auxiliar))
         return {'Mensagem Descriptografada': string_crypt}, 200
 

@@ -9,7 +9,7 @@ api = Api(app)
 
 @app.route("/")
 def landingpage():
-    return 'oi'
+    return 'bem-vindo á API do Enigma'
 
 api.add_resource(Cifra, '/encrypt/cifra')
 api.add_resource(De_Cifra, '/decrypt/de_cifra')
