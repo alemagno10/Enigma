@@ -1,0 +1,1 @@
+from functions import para_one_hot, para_string, cifra, de_cifra, enigma, de_enigma
