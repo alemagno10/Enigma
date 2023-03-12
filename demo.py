@@ -1,4 +1,4 @@
-'''Execute esse arquivo para ver as funcionalidades de enigma'''
+'''Execute esse arquivo para ver as funcionalidades de Enigma'''
 from enigma.functions import *
 placeholder = "algebra"
 print("\nBem vindo a demo do programa Enigma, por Alexandre Magno e Pedro Pertusi!\n")
@@ -28,4 +28,4 @@ print(e)
 print("de = de_enigma(e,aux,aux2)")
 print(de_enigma(e,aux,aux2)+"\n")
 
-print("Obrigado pela atençao.\nPara testar a API, consulte o readme.me")
+print("Obrigado pela atenção.\nPara testar a API, consulte o readme.me")

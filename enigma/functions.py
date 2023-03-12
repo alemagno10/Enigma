@@ -1,10 +1,9 @@
-from __future__ import annotations
 import numpy as np
-
+from unidecode import unidecode
 
 def para_one_hot(msg : str):
-    posicoes = {letra: indice for indice, letra in enumerate('abcdefghijklmnopqrstuvwxyz ')}
-    return np.array([[1 if posicoes[j] == i else 0 for i in range(27)] for j in msg.lower()]).T
+    posicoes, msg = {letra: indice for indice, letra in enumerate('abcdefghijklmnopqrstuvwxyz ')}, unidecode(msg.lower())
+    return np.array([[1 if posicoes[j] == i else 0 for i in range(27)] for j in msg if j in posicoes]).T
 
 def para_string(M):
     M = M.T
