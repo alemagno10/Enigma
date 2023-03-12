@@ -6,10 +6,9 @@ from resources.rotas import *
 app = Flask(__name__)
 api = Api(app)
 
-
 @app.route("/")
 def landingpage():
-    return 'bem-vindo á API do Enigma'
+    return 'bem-vindo à API do Enigma'
 
 api.add_resource(Cifra, '/encrypt/cifra')
 api.add_resource(De_Cifra, '/decrypt/de_cifra')
