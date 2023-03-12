@@ -20,7 +20,7 @@ print(f"dc = de_cifra('{placeholder}', aux)")
 print(de_cifra(c, aux)+"\n")
 
 print("Por fim a principal funcionalidade do programa: ")
-print("A criptografia de mensagens por meio da cifra básica junto de uma cifragem adicional única para cada caracter.\n")
+print("A criptografia de mensagens por meio de cifra + camada de cifragem adicional única para cada carácter.\n")
 aux2 = para_one_hot("zxcvbnm asdfghjklpoiuytrewq")
 e = enigma(placeholder,aux,aux2)
 print(f"e = enigma('{placeholder}',aux,aux2)")
