@@ -28,7 +28,7 @@ def enigma(msg, P, E):
     '''Recebe uma mensagem e duas matrizes de permutação. Faz uma cifragem única para cada carácter, de 
     acordo com a posição de cada um deles, aos moldes da máquina Enigma. Retorna uma string cifrada.'''
     hotMsg = para_one_hot(msg).T
-    final = P @ hotMsg[0]
+    final = np.array([P @ hotMsg[0]])
     for i in range(1,hotMsg.shape[0]):
         x = P @ hotMsg[i]
         for _ in range(i):
@@ -40,7 +40,7 @@ def de_enigma(msg, P, E):
     '''Recebe uma mensagem cifrada e duas matrizes de alfabetos de permutação. Descriptografa por carácter, 
     por meio de multiplicações por matrizes inversas, ao longo da mensagem. Retorna a string original'''
     msg = para_one_hot(msg).T
-    final = np.linalg.inv(P) @ msg[0]
+    final = np.array([np.linalg.inv(P) @ msg[0]])
     for i in range(1,msg.shape[0]):
         x = msg[i] 
         for _ in range(i):
